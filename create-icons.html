@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <h2>LinkedIn Message Assistant Icon Generator</h2>
+    <p>Right-click on each canvas below and "Save image as" to create the icon files:</p>
+    
+    <h3>16x16 Icon</h3>
+    <canvas id="icon16" width="16" height="16"></canvas>
+    
+    <h3>48x48 Icon</h3>
+    <canvas id="icon48" width="48" height="48"></canvas>
+    
+    <h3>128x128 Icon</h3>
+    <canvas id="icon128" width="128" height="128"></canvas>
+
+    <script>
+        function drawIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#0077b5');
+            gradient.addColorStop(1, '#00a0dc');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Draw a simple message/chat icon
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('AI', size/2, size/2);
+            
+            // Add a small border
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size * 0.05;
+            ctx.strokeRect(size * 0.1, size * 0.1, size * 0.8, size * 0.8);
+        }
+        
+        // Generate all icons
+        drawIcon('icon16', 16);
+        drawIcon('icon48', 48);
+        drawIcon('icon128', 128);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,33 @@
+{
+  "name": "linkedin-message-assistant",
+  "version": "1.0.0",
+  "description": "A Chrome extension that uses AI to generate professional responses for LinkedIn messages",
+  "main": "content.js",
+  "scripts": {
+    "build": "echo 'No build process required for Chrome extension'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "linkedin",
+    "ai",
+    "openai",
+    "gpt",
+    "messaging",
+    "automation"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/linkedin-message-assistant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/linkedin-message-assistant/issues"
+  },
+  "homepage": "https://github.com/yourusername/linkedin-message-assistant#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 
