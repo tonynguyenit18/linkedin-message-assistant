@@ -220,6 +220,26 @@
       font-size: 12px;
       color: #0c5460;
     }
+
+    .claude-info {
+      background: #e8f4fd;
+      border: 1px solid #bee5eb;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #0c5460;
+    }
+
+    .deepseek-info {
+      background: #e8f4fd;
+      border: 1px solid #bee5eb;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #0c5460;
+    }
   </style>
 </head>
 <body>
@@ -238,6 +258,14 @@
       <div class="provider-toggle">
         <input type="radio" id="gemini" name="provider" value="gemini" />
         <label for="gemini">Google Gemini</label>
+      </div>
+      <div class="provider-toggle">
+        <input type="radio" id="claude" name="provider" value="claude" />
+        <label for="claude">Anthropic (Claude)</label>
+      </div>
+      <div class="provider-toggle">
+        <input type="radio" id="deepseek" name="provider" value="deepseek" />
+        <label for="deepseek">DeepSeek</label>
       </div>
     </div>
 
@@ -258,9 +286,11 @@
       <div class="form-group">
         <label for="openaiModel">OpenAI Model</label>
         <select id="openaiModel">
-          <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Fast & Cost-effective)</option>
-          <option value="gpt-4">GPT-4 (Better Quality)</option>
-          <option value="gpt-4-turbo">GPT-4 Turbo (Latest & Best)</option>
+          <option value="gpt-4o">GPT-4o (Latest & Best Quality)</option>
+          <option value="gpt-4o-mini">GPT-4o Mini (Fast & Cost-effective)</option>
+          <option value="gpt-4-turbo">GPT-4 Turbo (Previous Best)</option>
+          <option value="gpt-4">GPT-4 (High Quality)</option>
+          <option value="gpt-3.5-turbo">GPT-3.5 Turbo (Legacy)</option>
         </select>
       </div>
     </div>
@@ -282,9 +312,61 @@
       <div class="form-group">
         <label for="geminiModel">Gemini Model</label>
         <select id="geminiModel">
-          <option value="gemini-1.5-flash">Gemini 1.5 Flash (Fast & Efficient)</option>
-          <option value="gemini-1.5-pro">Gemini 1.5 Pro (Best Quality)</option>
-          <option value="gemini-pro">Gemini Pro (Standard)</option>
+          <option value="gemini-2.0-flash-exp">Gemini 2.0 Flash (Latest & Fast)</option>
+          <option value="gemini-2.0-pro-exp">Gemini 2.0 Pro (Latest & Best Quality)</option>
+          <option value="gemini-1.5-flash">Gemini 1.5 Flash (Previous Fast)</option>
+          <option value="gemini-1.5-pro">Gemini 1.5 Pro (Previous Best)</option>
+          <option value="gemini-pro">Gemini Pro (Legacy)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Claude Settings -->
+    <div id="claudeSettings" class="provider-content">
+      <div class="form-group">
+        <div class="api-key-toggle">
+          <input type="checkbox" id="showClaudeKey" />
+          <label for="showClaudeKey">Show API Key</label>
+        </div>
+        <label for="claudeKey">Claude API Key</label>
+        <input type="text" id="claudeKey" placeholder="sk-ant..." />
+        <div class="claude-info">
+          Get your API key from <a href="https://console.anthropic.com/" target="_blank">Anthropic Console</a>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="claudeModel">Claude Model</label>
+        <select id="claudeModel">
+          <option value="claude-3-5-sonnet-20241022">Claude 3.5 Sonnet (Latest & Best)</option>
+          <option value="claude-3-5-haiku-20241022">Claude 3.5 Haiku (Fast & Efficient)</option>
+          <option value="claude-3-opus-20240229">Claude 3 Opus (Previous Best)</option>
+          <option value="claude-3-sonnet-20240229">Claude 3 Sonnet (Previous Standard)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- DeepSeek Settings -->
+    <div id="deepseekSettings" class="provider-content">
+      <div class="form-group">
+        <div class="api-key-toggle">
+          <input type="checkbox" id="showDeepSeekKey" />
+          <label for="showDeepSeekKey">Show API Key</label>
+        </div>
+        <label for="deepseekKey">DeepSeek API Key</label>
+        <input type="text" id="deepseekKey" placeholder="sk-" />
+        <div class="deepseek-info">
+          Get your API key from <a href="https://platform.deepseek.com/" target="_blank">DeepSeek Platform</a>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="deepseekModel">DeepSeek Model</label>
+        <select id="deepseekModel">
+          <option value="deepseek-chat">DeepSeek Chat (Latest & Best)</option>
+          <option value="deepseek-coder">DeepSeek Coder (Code-Focused)</option>
+          <option value="deepseek-chat-33b">DeepSeek Chat 33B (Fast)</option>
+          <option value="deepseek-coder-33b">DeepSeek Coder 33B (Fast Code)</option>
         </select>
       </div>
     </div>

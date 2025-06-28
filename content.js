@@ -9,8 +9,12 @@ class LinkedInMessageAssistant {
     this.provider = 'openai';
     this.openaiApiKey = null;
     this.geminiApiKey = null;
-    this.openaiModel = 'gpt-3.5-turbo';
-    this.geminiModel = 'gemini-1.5-flash';
+    this.claudeApiKey = null;
+    this.deepseekApiKey = null;
+    this.openaiModel = 'gpt-4o';
+    this.geminiModel = 'gemini-2.0-flash-exp';
+    this.claudeModel = 'claude-3-5-sonnet-20241022';
+    this.deepseekModel = 'deepseek-chat';
     this.floatingButton = null;
     this.init();
   }
@@ -24,20 +28,32 @@ class LinkedInMessageAssistant {
       'provider', 
       'openai_api_key', 
       'gemini_api_key', 
+      'claude_api_key',
+      'deepseek_api_key',
       'openai_model', 
-      'gemini_model'
+      'gemini_model',
+      'claude_model',
+      'deepseek_model'
     ]);
     
     this.provider = result.provider || 'openai';
     this.openaiApiKey = result.openai_api_key;
     this.geminiApiKey = result.gemini_api_key;
-    this.openaiModel = result.openai_model || 'gpt-3.5-turbo';
-    this.geminiModel = result.gemini_model || 'gemini-1.5-flash';
+    this.claudeApiKey = result.claude_api_key;
+    this.deepseekApiKey = result.deepseek_api_key;
+    this.openaiModel = result.openai_model || 'gpt-4o';
+    this.geminiModel = result.gemini_model || 'gemini-2.0-flash-exp';
+    this.claudeModel = result.claude_model || 'claude-3-5-sonnet-20241022';
+    this.deepseekModel = result.deepseek_model || 'deepseek-chat';
     
     // Check if we have a valid API key for the selected provider
     const hasValidKey = this.provider === 'openai' ? 
       (this.openaiApiKey && this.openaiApiKey.startsWith('sk-')) :
-      (this.geminiApiKey && this.geminiApiKey.startsWith('AIza'));
+      this.provider === 'gemini' ?
+      (this.geminiApiKey && this.geminiApiKey.startsWith('AIza')) :
+      this.provider === 'claude' ?
+      (this.claudeApiKey && this.claudeApiKey.startsWith('sk-ant')) :
+      (this.deepseekApiKey && this.deepseekApiKey.startsWith('sk-'));
     
     if (!hasValidKey) {
       console.log(`Social Content Assistant: No valid ${this.provider} API key found. Please set it in the extension popup.`);
@@ -232,8 +248,12 @@ class LinkedInMessageAssistant {
       let response;
       if (this.provider === 'openai') {
         response = await this.callOpenAI(messageContext, receiverName);
-      } else {
+      } else if (this.provider === 'gemini') {
         response = await this.callGemini(messageContext, receiverName);
+      } else if (this.provider === 'claude') {
+        response = await this.callClaude(messageContext, receiverName);
+      } else if (this.provider === 'deepseek') {
+        response = await this.callDeepSeek(messageContext, receiverName);
       }
       
       if (response) {
@@ -363,6 +383,84 @@ ${prompt}`
       return data.candidates[0].content.parts[0].text.trim();
     } else {
       throw new Error('Invalid response format from Gemini API');
+    }
+  }
+
+  async callClaude(context, receiverName) {
+    const prompt = this.buildPrompt(context, receiverName);
+    
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.claudeApiKey}`,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: this.claudeModel,
+        max_tokens: 300,
+        messages: [
+          {
+            role: 'user',
+            content: `You are a professional LinkedIn messaging assistant. Generate concise, professional, and engaging responses that maintain a professional tone while being personable. Keep responses under 200 words unless the context requires more detail.
+
+${prompt}`
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Claude API request failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    // Extract text from Claude response
+    if (data.content && data.content[0] && data.content[0].text) {
+      return data.content[0].text.trim();
+    } else {
+      throw new Error('Invalid response format from Claude API');
+    }
+  }
+
+  async callDeepSeek(context, receiverName) {
+    const prompt = this.buildPrompt(context, receiverName);
+    
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.deepseekApiKey}`
+      },
+      body: JSON.stringify({
+        model: this.deepseekModel,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a professional LinkedIn messaging assistant. Generate concise, professional, and engaging responses that maintain a professional tone while being personable. Keep responses under 200 words unless the context requires more detail.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 300,
+        temperature: 0.7
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`DeepSeek API request failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    // Extract text from DeepSeek response
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      return data.choices[0].message.content.trim();
+    } else {
+      throw new Error('Invalid response format from DeepSeek API');
     }
   }
 
@@ -740,8 +838,12 @@ Generate the response:`;
       
       if (this.provider === 'openai') {
         response = await this.callOpenAIWithPrompt(prompt);
-      } else {
+      } else if (this.provider === 'gemini') {
         response = await this.callGeminiWithPrompt(prompt);
+      } else if (this.provider === 'claude') {
+        response = await this.callClaudeWithPrompt(prompt);
+      } else if (this.provider === 'deepseek') {
+        response = await this.callDeepSeekWithPrompt(prompt);
       }
       
       this.insertResponse(chatWindow,response);
@@ -761,8 +863,12 @@ Generate the response:`;
       
       if (this.provider === 'openai') {
         response = await this.callOpenAIWithPrompt(prompt);
-      } else {
+      } else if (this.provider === 'gemini') {
         response = await this.callGeminiWithPrompt(prompt);
+      } else if (this.provider === 'claude') {
+        response = await this.callClaudeWithPrompt(prompt);
+      } else if (this.provider === 'deepseek') {
+        response = await this.callDeepSeekWithPrompt(prompt);
       }
       
       this.insertResponse(chatWindow,response);
@@ -902,6 +1008,68 @@ Generate the polite rejection response:`;
 
     const data = await response.json();
     return data.candidates[0].content.parts[0].text.trim();
+  }
+
+  async callClaudeWithPrompt(prompt) {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.claudeApiKey}`,
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: this.claudeModel,
+        max_tokens: 300,
+        messages: [
+          {
+            role: 'user',
+            content: `You are a professional LinkedIn messaging assistant. Generate concise, professional, and engaging responses that maintain a professional tone while being personable. Keep responses under 150 words unless the context requires more detail.
+
+${prompt}`
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Claude API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.content[0].text.trim();
+  }
+
+  async callDeepSeekWithPrompt(prompt) {
+    const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.deepseekApiKey}`
+      },
+      body: JSON.stringify({
+        model: this.deepseekModel,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a professional LinkedIn messaging assistant. Generate concise, professional, and engaging responses that maintain a professional tone while being personable. Keep responses under 150 words unless the context requires more detail.'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ],
+        max_tokens: 300,
+        temperature: 0.7
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`DeepSeek API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content.trim();
   }
 }
 

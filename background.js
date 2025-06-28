@@ -10,8 +10,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       'provider', 
       'openai_api_key', 
       'gemini_api_key', 
+      'claude_api_key',
+      'deepseek_api_key',
       'openai_model', 
-      'gemini_model'
+      'gemini_model',
+      'claude_model',
+      'deepseek_model'
     ], (result) => {
       sendResponse(result);
     });
@@ -23,8 +27,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       provider: request.provider,
       openai_api_key: request.openaiApiKey,
       gemini_api_key: request.geminiApiKey,
+      claude_api_key: request.claudeApiKey,
+      deepseek_api_key: request.deepseekApiKey,
       openai_model: request.openaiModel,
-      gemini_model: request.geminiModel
+      gemini_model: request.geminiModel,
+      claude_model: request.claudeModel,
+      deepseek_model: request.deepseekModel
     }, () => {
       sendResponse({ success: true });
     });

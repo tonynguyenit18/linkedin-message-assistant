@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Social Content Assistant",
-  "version": "1.0.0",
-  "description": "Generate AI-powered responses for social media messages using LLM models",
+  "version": "2.1.0",
+  "description": "Generate AI-powered responses for social media messages using latest LLM models (OpenAI GPT-4o, Google Gemini 2.0, Anthropic Claude 3.5, DeepSeek)",
   "permissions": [
     "activeTab",
     "storage",

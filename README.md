@@ -4,7 +4,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 ## Features
 
-- 🤖 **Multi-AI Support**: Choose between OpenAI GPT and Google Gemini models
+- 🤖 **Multi-AI Support**: Choose between OpenAI GPT, Google Gemini, Anthropic Claude, and DeepSeek models
 - 🎯 **Quick Reply Buttons**: Professional Accept/Reject buttons integrated into LinkedIn's quick replies section
 - 🔒 **Secure**: Your API keys are stored locally and never shared
 - 🎯 **Context-Aware**: Analyzes conversation history for relevant responses
@@ -16,7 +16,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 ## 🚀 Features
 
 ### 🤖 AI-Powered Response Generation
-- **Multi-Provider Support**: Choose between OpenAI GPT and Google Gemini
+- **Multi-Provider Support**: Choose between OpenAI GPT, Google Gemini, Anthropic Claude, and DeepSeek
 - **Context-Aware**: Analyzes conversation history for relevant responses
 - **Professional Tone**: Generates LinkedIn-appropriate messages
 - **Smart Typing**: Simulates natural typing to activate send button
@@ -29,7 +29,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 - **Integrated UI**: Seamlessly integrated into LinkedIn's existing quick replies section
 
 ### ⚙️ Configuration Options
-- **Provider Selection**: Switch between OpenAI and Gemini
+- **Provider Selection**: Switch between OpenAI, Gemini, Claude, and DeepSeek
 - **Model Selection**: Choose from multiple AI models
 - **API Key Management**: Secure storage of your API keys
 - **Real-time Updates**: Settings apply immediately
@@ -37,14 +37,30 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 ## Supported AI Providers
 
 ### OpenAI (GPT)
-- **GPT-3.5 Turbo**: Fast and cost-effective (recommended for most users)
-- **GPT-4**: Better quality responses with more nuanced understanding
-- **GPT-4 Turbo**: Latest model with the best performance (requires GPT-4 access)
+- **GPT-4o**: Latest and best quality model (June 2025)
+- **GPT-4o Mini**: Fast and cost-effective (June 2025)
+- **GPT-4 Turbo**: Previous best model
+- **GPT-4**: High quality responses
+- **GPT-3.5 Turbo**: Legacy model
 
 ### Google Gemini
-- **Gemini 1.5 Flash**: Fast and efficient responses
-- **Gemini 1.5 Pro**: Best quality and most capable model
-- **Gemini Pro**: Standard model with good performance
+- **Gemini 2.0 Flash**: Latest and fastest model (June 2025)
+- **Gemini 2.0 Pro**: Latest and best quality model (June 2025)
+- **Gemini 1.5 Flash**: Previous fast model
+- **Gemini 1.5 Pro**: Previous best quality model
+- **Gemini Pro**: Legacy model
+
+### Anthropic (Claude)
+- **Claude 3.5 Sonnet**: Latest and best quality model (June 2025)
+- **Claude 3.5 Haiku**: Fast and efficient model (June 2025)
+- **Claude 3 Opus**: Previous best model
+- **Claude 3 Sonnet**: Previous standard model
+
+### DeepSeek
+- **DeepSeek Chat**: Latest and best quality model (June 2025)
+- **DeepSeek Coder**: Code-focused model (June 2025)
+- **DeepSeek Chat 33B**: Fast model
+- **DeepSeek Coder 33B**: Fast code-focused model
 
 ## Installation
 
@@ -53,6 +69,8 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 1. **API Key**: You'll need an API key from one of the supported providers:
    - **OpenAI**: Sign up at [OpenAI Platform](https://platform.openai.com/)
    - **Gemini**: Get API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - **Claude**: Get API key from [Anthropic Console](https://console.anthropic.com/)
+   - **DeepSeek**: Get API key from [DeepSeek Platform](https://platform.deepseek.com/)
 
 ### Install the Extension
 
@@ -70,7 +88,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 3. **Configure the Extension**:
    - Click the extension icon in your toolbar
-   - Choose your preferred AI provider (OpenAI or Gemini)
+   - Choose your preferred AI provider (OpenAI, Gemini, or Claude)
    - Enter your API key for the selected provider
    - Select your preferred AI model
    - Click "Save Settings"
@@ -108,7 +126,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 ### ⚙️ Configuration
 1. **Open Extension Popup**: Click the extension icon in your browser
-2. **Choose Provider**: Select OpenAI or Google Gemini
+2. **Choose Provider**: Select OpenAI, Google Gemini, or Claude
 3. **Enter API Key**: Add your API key for the selected provider
 4. **Select Model**: Choose your preferred AI model
 5. **Save Settings**: Your preferences are automatically saved
@@ -125,13 +143,13 @@ The extension:
 
 ## Provider Comparison
 
-| Feature | OpenAI GPT | Google Gemini |
-|---------|------------|---------------|
-| **Speed** | Fast (GPT-3.5) to Moderate (GPT-4) | Very Fast (Flash) to Fast (Pro) |
-| **Quality** | Excellent | Very Good |
-| **Cost** | Pay-per-use | Free tier available |
-| **Availability** | Global | Global |
-| **Model Variety** | 3 models | 3 models |
+| Feature | OpenAI GPT | Google Gemini | Anthropic Claude | DeepSeek |
+|---------|------------|---------------|------------------|----------|
+| **Speed** | Fast (GPT-4o Mini) to Moderate (GPT-4o) | Very Fast (Flash) to Fast (Pro) | Fast (Haiku) to Moderate (Sonnet) | Fast (33B) to Moderate (Chat) |
+| **Quality** | Excellent | Very Good | Excellent | Excellent |
+| **Cost** | Pay-per-use | Free tier available | Pay-per-use | Pay-per-use |
+| **Availability** | Global | Global | Global | Global |
+| **Model Variety** | 5 models | 5 models | 4 models | 4 models |
 
 ## Security & Privacy
 
@@ -146,12 +164,14 @@ The extension:
 
 1. **"No API key found"**
    - Make sure you've entered your API key in the extension popup
-   - Verify the API key format (OpenAI: starts with "sk-", Gemini: starts with "AIza")
+   - Verify the API key format (OpenAI: starts with "sk-", Gemini: starts with "AIza", Claude: starts with "sk-ant", DeepSeek: starts with "sk-")
 
 2. **"API key test failed"**
    - Check that your API key is valid and has sufficient credits
    - Ensure you have access to the selected model
    - For Gemini, make sure you're using the correct API key from Google AI Studio
+   - For Claude, make sure you're using the correct API key from Anthropic Console
+   - For DeepSeek, make sure you're using the correct API key from DeepSeek Platform
 
 3. **"No message context found"**
    - Make sure you're in an active LinkedIn conversation

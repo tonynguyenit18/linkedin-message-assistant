@@ -8,7 +8,7 @@ console.log('🚀 Building Social Content Assistant Extension for Chrome Web Sto
 
 // Configuration
 const config = {
-  extensionName: 'linkedin-message-assistant',
+  extensionName: 'social-content-assistant',
   version: '1.0.0',
   buildDir: 'dist',
   sourceDir: '.',
@@ -140,7 +140,7 @@ function generateReleaseNotes() {
 ## 🚀 Features
 
 ### 🤖 AI-Powered Response Generation
-- Multi-Provider Support: Choose between OpenAI GPT and Google Gemini
+- Multi-Provider Support: Choose between OpenAI GPT, Google Gemini, Anthropic Claude, and DeepSeek
 - Context-Aware: Analyzes conversation history for relevant responses
 - Professional Tone: Generates LinkedIn-appropriate messages
 - Smart Typing: Simulates natural typing to activate send button
@@ -159,15 +159,15 @@ function generateReleaseNotes() {
 - Tooltip: Helpful information on hover
 
 ### ⚙️ Configuration Options
-- Provider Selection: Switch between OpenAI and Gemini
-- Model Selection: Choose from multiple AI models
+- Provider Selection: Switch between OpenAI, Gemini, Claude, and DeepSeek
+- Model Selection: Choose from multiple AI models including latest June 2025 models
 - API Key Management: Secure storage of your API keys
 - Real-time Updates: Settings apply immediately
 
 ## 🔧 Technical Details
 - Manifest Version: 3
 - Permissions: activeTab, storage, scripting
-- Supported AI Providers: OpenAI, Google Gemini
+- Supported AI Providers: OpenAI, Google Gemini, Anthropic Claude, DeepSeek
 - Browser Compatibility: Chrome 88+
 
 ## 📋 Installation Instructions
@@ -181,6 +181,14 @@ function generateReleaseNotes() {
 ## 🔑 API Keys Required
 - OpenAI: https://platform.openai.com/
 - Google Gemini: https://makersuite.google.com/app/apikey
+- Anthropic Claude: https://console.anthropic.com/
+- DeepSeek: https://platform.deepseek.com/
+
+## 🆕 Latest Models (June 2025)
+- **OpenAI**: GPT-4o, GPT-4o Mini
+- **Google Gemini**: Gemini 2.0 Flash, Gemini 2.0 Pro
+- **Anthropic Claude**: Claude 3.5 Sonnet, Claude 3.5 Haiku
+- **DeepSeek**: DeepSeek Chat, DeepSeek Coder
 
 ## 🐛 Bug Fixes
 - Fixed response insertion to properly activate send button
