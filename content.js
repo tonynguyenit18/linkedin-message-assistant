@@ -2,7 +2,7 @@ const classNames = {
     AI_QUICK_REPLY_BUTTONS_CLASS_NAME: 'linkedin-ai-quick-reply-container',
     MESSAGE_CONTAINER_INPUT_CLASS_NAME: 'msg-form__msg-content-container',
 }
-// LinkedIn Message Assistant Content Script
+// Social Content Assistant Content Script
 class LinkedInMessageAssistant {
   constructor() {
     this.isInitialized = false;
@@ -40,7 +40,7 @@ class LinkedInMessageAssistant {
       (this.geminiApiKey && this.geminiApiKey.startsWith('AIza'));
     
     if (!hasValidKey) {
-      console.log(`LinkedIn Message Assistant: No valid ${this.provider} API key found. Please set it in the extension popup.`);
+      console.log(`Social Content Assistant: No valid ${this.provider} API key found. Please set it in the extension popup.`);
       return;
     }
 
@@ -50,7 +50,7 @@ class LinkedInMessageAssistant {
     this.setupMessageObserver();
     this.injectStyles();
     this.isInitialized = true;
-    console.log(`LinkedIn Message Assistant initialized with ${this.provider}`);
+    console.log(`Social Content Assistant initialized with ${this.provider}`);
   }
 
   async waitForLinkedIn() {
@@ -596,7 +596,7 @@ Generate the response:`;
                 const messageContainer = messageContainers[i];
                 const aiQuickRepliesSection = messageContainer.querySelector(`.${classNames.AI_QUICK_REPLY_BUTTONS_CLASS_NAME}`);
                 if(!aiQuickRepliesSection) {
-                    console.log('LinkedIn Message Assistant: new chat windows detected. inject quick reply buttons');
+                    console.log('Social Content Assistant: new chat windows detected. inject quick reply buttons');
                     // Wait a bit for the conversation to fully load, then inject buttons
                     setTimeout(() => {
                         this.injectQuickReplyButtons(messageContainer);
@@ -618,7 +618,7 @@ Generate the response:`;
     const quickRepliesSection = chatWindow.querySelector(`.${classNames.MESSAGE_CONTAINER_INPUT_CLASS_NAME}`);
     
     if (!quickRepliesSection) {
-      console.log('LinkedIn Message Assistant: failed to create buttons .conversations-quick-replies section not found, retrying in 1 second...');
+      console.log('Social Content Assistant: failed to create buttons .conversations-quick-replies section not found, retrying in 1 second...');
       return;
     }
 
@@ -630,7 +630,7 @@ Generate the response:`;
     const existingContainer = chatWindow.querySelector(`.${classNames.AI_QUICK_REPLY_BUTTONS_CLASS_NAME}`);
         
     if (existingContainer) {
-        console.log('LinkedIn Message Assistant: AI quick reply buttons already exist, skipping...');
+        console.log('Social Content Assistant: AI quick reply buttons already exist, skipping...');
         return;
     }
 
@@ -732,7 +732,7 @@ Generate the response:`;
   }
 
   async generateAcceptResponse(chatWindow,context, receiverName) {
-    this.setQuickReplyButtonLoading(true);
+    this.setQuickReplyButtonLoading(chatWindow,true);
     
     try {
       const prompt = this.buildAcceptPrompt(chatWindow,context, receiverName);
@@ -748,12 +748,12 @@ Generate the response:`;
     } catch (error) {
       console.error('Error generating acceptance response:', error);
     } finally {
-      this.setQuickReplyButtonLoading(false);
+      this.setQuickReplyButtonLoading(chatWindow,false);
     }
   }
 
   async generateRejectResponse(chatWindow,context, receiverName) {
-    this.setQuickReplyButtonLoading(true);
+    this.setQuickReplyButtonLoading(chatWindow,true);
     
     try {
       const prompt = this.buildRejectPrompt(chatWindow,context, receiverName);
@@ -769,13 +769,13 @@ Generate the response:`;
     } catch (error) {
       console.error('Error generating rejection response:', error);
     } finally {
-      this.setQuickReplyButtonLoading(false);
+      this.setQuickReplyButtonLoading(chatWindow,false);
     }
   }
 
-  setQuickReplyButtonLoading(loading) {
-    const acceptBtn = document.getElementById('linkedin-ai-accept-btn');
-    const rejectBtn = document.getElementById('linkedin-ai-reject-btn');
+  setQuickReplyButtonLoading(chatWindow,loading) {
+    const acceptBtn = chatWindow.querySelector('#linkedin-ai-accept-btn');
+    const rejectBtn = chatWindow.querySelector('#linkedin-ai-reject-btn');
     
     if (acceptBtn) {
       if (loading) {

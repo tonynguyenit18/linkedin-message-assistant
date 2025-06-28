@@ -1,11 +1,11 @@
-# LinkedIn Message Assistant
+# Social Content Assistant
 
-A Chrome extension that uses AI to generate professional responses for LinkedIn messages. The extension integrates seamlessly with LinkedIn's messaging interface and provides intelligent, context-aware responses using multiple AI providers with a modern floating button interface.
+A Chrome extension that uses AI to generate professional responses for LinkedIn messages. The extension integrates seamlessly with LinkedIn's messaging interface and provides intelligent, context-aware responses using multiple AI providers with quick reply buttons.
 
 ## Features
 
 - 🤖 **Multi-AI Support**: Choose between OpenAI GPT and Google Gemini models
-- 🎯 **Floating Button**: Modern, draggable floating button that appears on LinkedIn messaging pages
+- 🎯 **Quick Reply Buttons**: Professional Accept/Reject buttons integrated into LinkedIn's quick replies section
 - 🔒 **Secure**: Your API keys are stored locally and never shared
 - 🎯 **Context-Aware**: Analyzes conversation history for relevant responses
 - 💼 **Professional**: Maintains LinkedIn's professional tone
@@ -26,13 +26,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 - **Reject Button**: Create polite rejection messages
 - **Context Integration**: Uses conversation history for appropriate responses
 - **One-Click Generation**: Instant response creation with AI
-
-### 🎨 Floating Button Interface
-- **Draggable**: Move the button anywhere on the page
-- **Smart Visibility**: Only appears on LinkedIn messaging pages
-- **Loading States**: Visual feedback during AI processing
-- **Responsive Design**: Works on desktop and mobile devices
-- **Tooltip**: Helpful information on hover
+- **Integrated UI**: Seamlessly integrated into LinkedIn's existing quick replies section
 
 ### ⚙️ Configuration Options
 - **Provider Selection**: Switch between OpenAI and Gemini
@@ -65,7 +59,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 1. **Download the Extension**:
    ```bash
    git clone <repository-url>
-   cd anti-ghost-extension
+   cd linkedin-message-assistant
    ```
 
 2. **Load in Chrome**:
@@ -85,40 +79,32 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 1. **Navigate to LinkedIn**: Go to [LinkedIn](https://www.linkedin.com/) and log in
 2. **Open a Conversation**: Click on any conversation in your messages
-3. **Find the Floating Button**: 
-   - Look for the floating "AI Response" button in the bottom-right corner
-   - The button shows which provider you're using (e.g., "AI Response" with "OPENAI" or "GEMINI" badge)
-   - The button only appears on LinkedIn messaging pages
+3. **Find Quick Reply Section**: 
+   - Look for the `conversations-quick-replies` section in the messaging interface
+   - The extension automatically injects Accept/Reject buttons into this section
 4. **Generate Response**: 
-   - Click the floating button to generate a professional response
+   - Click "Accept" to generate a professional acceptance response
+   - Click "Reject" to create a polite rejection message
    - The AI will analyze the conversation context and generate an appropriate response
-   - The button shows a loading state while generating
+   - The buttons show a loading state while generating
 5. **Review and Send**: Review the generated response and send it
 
-### Floating Button Features
+### Quick Reply Button Features
 
-- **🎯 Smart Visibility**: Only appears on LinkedIn messaging pages
-- **🖱️ Draggable**: Click and drag to reposition anywhere on the screen
+- **🎯 Smart Integration**: Automatically appears in LinkedIn's quick replies section
 - **📱 Responsive**: Automatically adjusts size on mobile devices
 - **💫 Animations**: Smooth hover effects and loading animations
-- **ℹ️ Tooltip**: Hover to see helpful information
 - **⚡ Loading States**: Visual feedback during response generation
+- **🎨 LinkedIn Styled**: Matches LinkedIn's design language perfectly
 
 ## 📖 Usage
 
-### 🎯 Quick Reply Buttons (New!)
+### 🎯 Quick Reply Buttons
 1. **Navigate to LinkedIn Messages**: Go to any LinkedIn conversation
 2. **Find Quick Reply Section**: Look for the `conversations-quick-replies` section
 3. **Use Accept Button**: Click "Accept" to generate a professional acceptance response
 4. **Use Reject Button**: Click "Reject" to create a polite rejection message
 5. **Review and Send**: The AI-generated response will be inserted into the message box
-
-### 🤖 Floating AI Response Button
-1. **Navigate to LinkedIn Messages**: Go to any LinkedIn conversation
-2. **Find Floating Button**: Look for the draggable "AI Response" button
-3. **Click to Generate**: Click the button to generate an AI response
-4. **Review Response**: The response will be typed into the message box
-5. **Send Message**: The send button will be automatically activated
 
 ### ⚙️ Configuration
 1. **Open Extension Popup**: Click the extension icon in your browser
@@ -131,7 +117,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 The extension:
 
-1. **Detects Messaging Pages**: Automatically shows the floating button on LinkedIn messaging pages
+1. **Detects Messaging Pages**: Automatically injects quick reply buttons on LinkedIn messaging pages
 2. **Analyzes Context**: Reads the recent conversation history (last 5 messages)
 3. **Generates Response**: Uses your selected AI provider to create professional responses
 4. **Inserts Response**: Automatically fills the message input with the generated response
@@ -169,22 +155,18 @@ The extension:
 
 3. **"No message context found"**
    - Make sure you're in an active LinkedIn conversation
-   - Try refreshing the page and clicking the floating button again
+   - Try refreshing the page and clicking the quick reply buttons again
 
-4. **Floating button not appearing**
+4. **Quick reply buttons not appearing**
    - Make sure you're on a LinkedIn messaging page
    - Check that the extension is enabled
    - Try refreshing the page
+   - Look for the `conversations-quick-replies` section
 
 5. **Provider switching issues**
    - Make sure you have a valid API key for the selected provider
    - Try refreshing the page after switching providers
    - Check the console for any error messages
-
-6. **Button positioning issues**
-   - The button is draggable - you can reposition it anywhere on screen
-   - The button will stay in its position until you move it again
-   - On mobile, the button automatically adjusts its size and position
 
 ### Getting Help
 
@@ -201,13 +183,13 @@ If you encounter issues:
 ### Project Structure
 
 ```
-anti-ghost-extension/
+linkedin-message-assistant/
 ├── manifest.json          # Extension configuration
-├── content.js            # Main content script with floating button & multi-provider support
+├── content.js            # Main content script with quick reply buttons & multi-provider support
 ├── popup.html            # Settings popup with provider selection
 ├── popup.js              # Popup functionality
 ├── background.js         # Background service worker
-├── styles.css            # Extension styles with floating button animations
+├── styles.css            # Extension styles with quick reply button animations
 ├── icons/                # Extension icons
 └── README.md             # This file
 ```
@@ -228,14 +210,14 @@ The extension is designed to be easily extensible. To add a new AI provider:
 3. Add API call method in `content.js`
 4. Update storage handling in `background.js`
 
-### Floating Button Customization
+### Quick Reply Button Customization
 
-The floating button can be customized by modifying:
+The quick reply buttons can be customized by modifying:
 
-- **Position**: Change default position in `styles.css`
-- **Styling**: Modify colors, size, and animations
-- **Behavior**: Adjust visibility logic in `content.js`
+- **Styling**: Modify colors, size, and animations in `styles.css`
+- **Behavior**: Adjust button logic in `content.js`
 - **Responsiveness**: Update media queries for different screen sizes
+- **Integration**: Modify how buttons are injected into LinkedIn's interface
 
 ## Contributing
 

@@ -1,33 +1,29 @@
 {
-  "name": "linkedin-message-assistant",
+  "name": "social-content-assistant",
   "version": "1.0.0",
-  "description": "A Chrome extension that uses AI to generate professional responses for LinkedIn messages",
+  "description": "AI-powered social media content assistant with multi-provider support",
   "main": "content.js",
   "scripts": {
-    "build": "echo 'No build process required for Chrome extension'",
-    "test": "echo 'No tests specified'",
-    "lint": "echo 'No linter configured'"
+    "build": "node build.js"
   },
-  "keywords": [
-    "chrome-extension",
-    "linkedin",
-    "ai",
-    "openai",
-    "gpt",
-    "messaging",
-    "automation"
-  ],
-  "author": "Your Name",
+  "author": "Tony Nguyen",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/linkedin-message-assistant.git"
+    "url": "https://github.com/tonynguyenit18/social-content-assistant.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/linkedin-message-assistant/issues"
+    "url": "https://github.com/tonynguyenit18/social-content-assistant/issues"
   },
-  "homepage": "https://github.com/yourusername/linkedin-message-assistant#readme",
+  "homepage": "https://github.com/tonynguyenit18/social-content-assistantt#readme",
   "engines": {
-    "node": ">=14.0.0"
-  }
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "chrome-extension",
+    "social-media",
+    "ai",
+    "content-assistant",
+    "anti-ghost"
+  ]
 } 

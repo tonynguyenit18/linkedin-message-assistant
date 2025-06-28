@@ -1,4 +1,4 @@
-// Popup script for LinkedIn Message Assistant
+// Popup script for Social Content Assistant
 document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('settingsForm');
   const openaiKeyInput = document.getElementById('openaiKey');

@@ -1,6 +1,6 @@
-// Background service worker for LinkedIn Message Assistant
+// Background service worker for Social Content Assistant
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('LinkedIn Message Assistant installed');
+  console.log('Social Content Assistant installed');
 });
 
 // Handle messages from content script

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIn Message Assistant",
+  "name": "Social Content Assistant",
   "version": "1.0.0",
-  "description": "Generate AI-powered responses for LinkedIn messages using LLM models",
+  "description": "Generate AI-powered responses for social media messages using LLM models",
   "permissions": [
     "activeTab",
     "storage",
@@ -24,7 +24,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "LinkedIn Message Assistant"
+    "default_title": "Content Assistant"
   },
   "icons": {
     "16": "icons/icon16.png",
