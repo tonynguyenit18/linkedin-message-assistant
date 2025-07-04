@@ -2,7 +2,7 @@ const classNames = {
     AI_QUICK_REPLY_BUTTONS_CLASS_NAME: 'linkedin-ai-quick-reply-container',
     MESSAGE_CONTAINER_INPUT_CLASS_NAME: 'msg-form__msg-content-container',
 }
-// Social Content Assistant Content Script
+// LinkedIn Message Assistant Content Script
 class LinkedInMessageAssistant {
   constructor() {
     this.isInitialized = false;
@@ -56,7 +56,7 @@ class LinkedInMessageAssistant {
       (this.deepseekApiKey && this.deepseekApiKey.startsWith('sk-'));
     
     if (!hasValidKey) {
-      console.log(`Social Content Assistant: No valid ${this.provider} API key found. Please set it in the extension popup.`);
+      console.log(`LinkedIn Message Assistant: No valid ${this.provider} API key found. Please set it in the extension popup.`);
       return;
     }
 
@@ -66,7 +66,7 @@ class LinkedInMessageAssistant {
     this.setupMessageObserver();
     this.injectStyles();
     this.isInitialized = true;
-    console.log(`Social Content Assistant initialized with ${this.provider}`);
+    console.log(`LinkedIn Message Assistant initialized with ${this.provider}`);
   }
 
   async waitForLinkedIn() {
@@ -694,7 +694,7 @@ Generate the response:`;
                 const messageContainer = messageContainers[i];
                 const aiQuickRepliesSection = messageContainer.querySelector(`.${classNames.AI_QUICK_REPLY_BUTTONS_CLASS_NAME}`);
                 if(!aiQuickRepliesSection) {
-                    console.log('Social Content Assistant: new chat windows detected. inject quick reply buttons');
+                    console.log('LinkedIn Message Assistant: new chat windows detected. inject quick reply buttons');
                     // Wait a bit for the conversation to fully load, then inject buttons
                     setTimeout(() => {
                         this.injectQuickReplyButtons(messageContainer);
@@ -716,7 +716,7 @@ Generate the response:`;
     const quickRepliesSection = chatWindow.querySelector(`.${classNames.MESSAGE_CONTAINER_INPUT_CLASS_NAME}`);
     
     if (!quickRepliesSection) {
-      console.log('Social Content Assistant: failed to create buttons .conversations-quick-replies section not found, retrying in 1 second...');
+      console.log('LinkedIn Message Assistant: failed to create buttons .conversations-quick-replies section not found, retrying in 1 second...');
       return;
     }
 
@@ -728,7 +728,7 @@ Generate the response:`;
     const existingContainer = chatWindow.querySelector(`.${classNames.AI_QUICK_REPLY_BUTTONS_CLASS_NAME}`);
         
     if (existingContainer) {
-        console.log('Social Content Assistant: AI quick reply buttons already exist, skipping...');
+        console.log('LinkedIn Message Assistant: AI quick reply buttons already exist, skipping...');
         return;
     }
 

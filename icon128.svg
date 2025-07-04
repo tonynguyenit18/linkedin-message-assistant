@@ -1,0 +1,69 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0077B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#005885;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D4FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099CC;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#bgGradient)" stroke="#004C73" stroke-width="2"/>
+  
+  <!-- AI Brain/Circuit pattern -->
+  <g filter="url(#glow)">
+    <!-- Central node -->
+    <circle cx="64" cy="64" r="8" fill="url(#aiGradient)"/>
+    
+    <!-- Circuit connections -->
+    <path d="M 64 56 L 64 40 M 64 72 L 64 88 M 56 64 L 40 64 M 72 64 L 88 64" 
+          stroke="url(#aiGradient)" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Corner nodes -->
+    <circle cx="40" cy="40" r="4" fill="url(#aiGradient)"/>
+    <circle cx="88" cy="40" r="4" fill="url(#aiGradient)"/>
+    <circle cx="40" cy="88" r="4" fill="url(#aiGradient)"/>
+    <circle cx="88" cy="88" r="4" fill="url(#aiGradient)"/>
+    
+    <!-- Diagonal connections -->
+    <path d="M 44 44 L 84 84 M 84 44 L 44 84" 
+          stroke="url(#aiGradient)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  </g>
+  
+  <!-- Message bubble -->
+  <g transform="translate(64, 64)">
+    <!-- Message bubble background -->
+    <rect x="-25" y="15" width="50" height="25" rx="8" ry="8" 
+          fill="white" stroke="#E0E0E0" stroke-width="1"/>
+    
+    <!-- Message text lines -->
+    <rect x="-20" y="20" width="15" height="2" rx="1" fill="#666"/>
+    <rect x="-20" y="24" width="25" height="2" rx="1" fill="#666"/>
+    <rect x="-20" y="28" width="20" height="2" rx="1" fill="#666"/>
+    
+    <!-- Message bubble tail -->
+    <path d="M -5 15 L -10 25 L -5 35" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  </g>
+  
+  <!-- Sparkles/Intelligence indicators -->
+  <g opacity="0.8">
+    <circle cx="25" cy="25" r="2" fill="#FFD700"/>
+    <circle cx="103" cy="35" r="1.5" fill="#FFD700"/>
+    <circle cx="35" cy="103" r="1.5" fill="#FFD700"/>
+    <circle cx="95" cy="95" r="2" fill="#FFD700"/>
+  </g>
+  
+  <!-- Professional badge indicator -->
+  <circle cx="64" cy="64" r="58" fill="none" stroke="white" stroke-width="1" opacity="0.3"/>
+</svg> 

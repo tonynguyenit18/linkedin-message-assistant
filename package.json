@@ -1,7 +1,7 @@
 {
-  "name": "social-content-assistant",
+  "name": "linkedin-message-assistant",
   "version": "2.1.0",
-  "description": "AI-powered social media content assistant with multi-provider support (OpenAI, Google Gemini, Anthropic Claude, DeepSeek) - Updated with latest June 2025 models",
+  "description": "AI-powered LinkedIn message assistant with multi-provider support (OpenAI, Google Gemini, Anthropic Claude, DeepSeek) - Updated with latest June 2025 models",
   "main": "content.js",
   "scripts": {
     "build": "node build.js"
@@ -10,28 +10,30 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tonynguyenit18/social-content-assistant.git"
+    "url": "https://github.com/tonynguyenit18/linkedin-message-assistant.git"
   },
   "bugs": {
-    "url": "https://github.com/tonynguyenit18/social-content-assistant/issues"
+    "url": "https://github.com/tonynguyenit18/linkedin-message-assistant/issues"
   },
-  "homepage": "https://github.com/tonynguyenit18/social-content-assistantt#readme",
+  "homepage": "https://github.com/tonynguyenit18/linkedin-message-assistant#readme",
   "engines": {
     "node": ">=20.0.0"
   },
   "keywords": [
     "chrome-extension",
-    "social-media",
+    "linkedin",
     "ai",
-    "content-assistant",
+    "message-assistant",
     "openai",
     "gemini",
     "claude",
     "deepseek",
-    "linkedin",
     "gpt-4o",
     "gemini-2.0",
     "claude-3.5",
     "deepseek-chat"
-  ]
-} 
+  ],
+  "dependencies": {
+    "canvas": "^3.1.2"
+  }
+}

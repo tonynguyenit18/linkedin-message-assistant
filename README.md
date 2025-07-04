@@ -1,4 +1,4 @@
-# Social Content Assistant
+# LinkedIn Message Assistant
 
 A Chrome extension that uses AI to generate professional responses for LinkedIn messages. The extension integrates seamlessly with LinkedIn's messaging interface and provides intelligent, context-aware responses using multiple AI providers with quick reply buttons.
 
@@ -88,7 +88,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 3. **Configure the Extension**:
    - Click the extension icon in your toolbar
-   - Choose your preferred AI provider (OpenAI, Gemini, or Claude)
+   - Choose your preferred AI provider (OpenAI, Gemini, Claude, or DeepSeek)
    - Enter your API key for the selected provider
    - Select your preferred AI model
    - Click "Save Settings"
@@ -126,7 +126,7 @@ A Chrome extension that uses AI to generate professional responses for LinkedIn 
 
 ### ⚙️ Configuration
 1. **Open Extension Popup**: Click the extension icon in your browser
-2. **Choose Provider**: Select OpenAI, Google Gemini, or Claude
+2. **Choose Provider**: Select OpenAI, Google Gemini, Claude, or DeepSeek
 3. **Enter API Key**: Add your API key for the selected provider
 4. **Select Model**: Choose your preferred AI model
 5. **Save Settings**: Your preferences are automatically saved
@@ -200,53 +200,44 @@ If you encounter issues:
 
 ## Development
 
+### Building the Extension
+
+```bash
+npm install
+npm run build
+```
+
 ### Project Structure
 
 ```
 linkedin-message-assistant/
-├── manifest.json          # Extension configuration
-├── content.js            # Main content script with quick reply buttons & multi-provider support
-├── popup.html            # Settings popup with provider selection
-├── popup.js              # Popup functionality
-├── background.js         # Background service worker
-├── styles.css            # Extension styles with quick reply button animations
-├── icons/                # Extension icons
-└── README.md             # This file
+├── manifest.json          # Extension manifest
+├── content.js             # Content script for LinkedIn integration
+├── popup.html             # Extension popup interface
+├── popup.js               # Popup functionality
+├── background.js          # Background service worker
+├── styles.css             # Styling for injected elements
+├── icons/                 # Extension icons
+├── build.js               # Build script
+└── package.json           # Project dependencies
 ```
-
-### Local Development
-
-1. Make changes to the code
-2. Go to `chrome://extensions/`
-3. Click the refresh icon on the extension
-4. Test your changes on LinkedIn
-
-### Adding New Providers
-
-The extension is designed to be easily extensible. To add a new AI provider:
-
-1. Add provider selection UI in `popup.html`
-2. Update `popup.js` to handle the new provider
-3. Add API call method in `content.js`
-4. Update storage handling in `background.js`
-
-### Quick Reply Button Customization
-
-The quick reply buttons can be customized by modifying:
-
-- **Styling**: Modify colors, size, and animations in `styles.css`
-- **Behavior**: Adjust button logic in `content.js`
-- **Responsiveness**: Update media queries for different screen sizes
-- **Integration**: Modify how buttons are injected into LinkedIn's interface
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License - see LICENSE file for details
 
-## Disclaimer
+## Support
 
-This extension is not affiliated with LinkedIn, OpenAI, or Google. Use responsibly and ensure your responses comply with LinkedIn's terms of service and professional standards. 
+For support, please open an issue on GitHub or contact the maintainer.
+
+---
+
+Built with ❤️ for LinkedIn professionals 

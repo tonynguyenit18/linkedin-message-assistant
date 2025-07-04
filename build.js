@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-console.log('🚀 Building Social Content Assistant Extension for Chrome Web Store...\n');
+console.log('🚀 Building LinkedIn Message Assistant Extension for Chrome Web Store...\n');
 
 // Configuration
 const config = {
@@ -135,75 +135,66 @@ function createZip() {
 function generateReleaseNotes() {
   console.log('\n📝 Generating release notes...');
   
-  const releaseNotes = `# Social Content Assistant v${config.version}
+  const releaseNotes = `# LinkedIn Message Assistant v${config.version}
 
-## 🚀 Features
+## What's New
 
-### 🤖 AI-Powered Response Generation
-- Multi-Provider Support: Choose between OpenAI GPT, Google Gemini, Anthropic Claude, and DeepSeek
-- Context-Aware: Analyzes conversation history for relevant responses
-- Professional Tone: Generates LinkedIn-appropriate messages
-- Smart Typing: Simulates natural typing to activate send button
+- **Multi-AI Provider Support**: Now supports OpenAI GPT, Google Gemini, Anthropic Claude, and DeepSeek
+- **Latest Models**: Updated to support the newest AI models (June 2025)
+- **Quick Reply Integration**: Seamlessly integrated Accept/Reject buttons in LinkedIn's quick replies section
+- **Enhanced UI**: Modern, LinkedIn-styled interface with smooth animations
+- **Better Context Analysis**: Improved conversation history analysis for more relevant responses
+- **Mobile Support**: Fully responsive design for mobile devices
 
-### 🎯 Quick Reply Buttons
-- Send Positive Reply: Generate professional acceptance responses
-- Send Polite Decline: Create polite rejection messages
-- Context Integration: Uses conversation history for appropriate responses
-- One-Click Generation: Instant response creation with AI
+## Supported AI Providers
 
-### 🎨 Floating Button Interface
-- Draggable: Move the button anywhere on the page
-- Smart Visibility: Only appears on LinkedIn messaging pages
-- Loading States: Visual feedback during AI processing
-- Responsive Design: Works on desktop and mobile devices
-- Tooltip: Helpful information on hover
+### OpenAI (GPT)
+- GPT-4o (Latest & Best Quality)
+- GPT-4o Mini (Fast & Cost-effective)
+- GPT-4 Turbo (Previous Best)
+- GPT-4 (High Quality)
+- GPT-3.5 Turbo (Legacy)
 
-### ⚙️ Configuration Options
-- Provider Selection: Switch between OpenAI, Gemini, Claude, and DeepSeek
-- Model Selection: Choose from multiple AI models including latest June 2025 models
-- API Key Management: Secure storage of your API keys
-- Real-time Updates: Settings apply immediately
+### Google Gemini
+- Gemini 2.0 Flash (Latest & Fast)
+- Gemini 2.0 Pro (Latest & Best Quality)
+- Gemini 1.5 Flash (Previous Fast)
+- Gemini 1.5 Pro (Previous Best)
+- Gemini Pro (Legacy)
 
-## 🔧 Technical Details
-- Manifest Version: 3
-- Permissions: activeTab, storage, scripting
-- Supported AI Providers: OpenAI, Google Gemini, Anthropic Claude, DeepSeek
-- Browser Compatibility: Chrome 88+
+### Anthropic (Claude)
+- Claude 3.5 Sonnet (Latest & Best)
+- Claude 3.5 Haiku (Fast & Efficient)
+- Claude 3 Opus (Previous Best)
+- Claude 3 Sonnet (Previous Standard)
 
-## 📋 Installation Instructions
-1. Download and extract the ZIP file
-2. Open Chrome and go to chrome://extensions/
-3. Enable "Developer mode"
-4. Click "Load unpacked" and select the extracted folder
-5. Configure your API keys in the extension popup
-6. Start using on LinkedIn messaging pages
+### DeepSeek
+- DeepSeek Chat (Latest & Best)
+- DeepSeek Coder (Code-Focused)
+- DeepSeek Chat 33B (Fast)
+- DeepSeek Coder 33B (Fast Code)
 
-## 🔑 API Keys Required
-- OpenAI: https://platform.openai.com/
-- Google Gemini: https://makersuite.google.com/app/apikey
-- Anthropic Claude: https://console.anthropic.com/
-- DeepSeek: https://platform.deepseek.com/
+## How to Use
 
-## 🆕 Latest Models (June 2025)
-- **OpenAI**: GPT-4o, GPT-4o Mini
-- **Google Gemini**: Gemini 2.0 Flash, Gemini 2.0 Pro
-- **Anthropic Claude**: Claude 3.5 Sonnet, Claude 3.5 Haiku
-- **DeepSeek**: DeepSeek Chat, DeepSeek Coder
+1. Install the extension
+2. Configure your preferred AI provider and API key
+3. Go to LinkedIn and open any conversation
+4. Look for the Accept/Reject buttons in the quick replies section
+5. Click to generate professional responses
 
-## 🐛 Bug Fixes
-- Fixed response insertion to properly activate send button
-- Improved button styling to match Ant Design
-- Enhanced observer logic for better reliability
-- Added proper error handling and user feedback
+## Security & Privacy
 
-## 📈 Performance Improvements
-- Optimized typing simulation for faster response insertion
-- Reduced API calls with better caching
-- Improved memory usage and cleanup
-- Enhanced mobile responsiveness
+- All API keys are stored locally in your browser
+- No conversation data is sent to third-party servers
+- Direct API calls to your chosen provider only
 
 ---
-Built with ❤️ for LinkedIn professionals
+
+**Note**: This extension requires API keys from the respective AI providers. Get your API keys from:
+- OpenAI: https://platform.openai.com/
+- Gemini: https://makersuite.google.com/app/apikey
+- Claude: https://console.anthropic.com/
+- DeepSeek: https://platform.deepseek.com/
 `;
 
   const releaseNotesPath = path.join(config.buildDir, 'RELEASE_NOTES.md');
